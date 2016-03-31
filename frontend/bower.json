@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "homepage": "https://github.com/amaliacardenas/WDI_PROJECT3",
+  "authors": [
+    "amaliacardenas <amaliacardenas@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3",
+    "satellizer": "^0.14.0",
+    "angular-jwt": "^0.0.9"
+  }
+}
