@@ -14,17 +14,19 @@ gulp.task('jshint', function() {
 
 
 gulp.task('sass:expanded', function(){
+  console.log("sassin");
   return gulp.src('./public/src/scss/app.scss')
   .pipe(sass({ outputStyle: 'expanded'}))
-  .pipe(gulp.dest('public/css'));
+  .pipe(rename('app.css'))
+  .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('sass:compressed', function(){
+  console.log("sassin");
   return gulp.src('./public/src/scss/app.scss')
   .pipe(sass({ outputStyle: 'compressed'}))
   .pipe(rename('app.min.css'))
-  .pipe(gulp.dest('public/css'));  
-
+  .pipe(gulp.dest('./public/css'));  
 });
 
 gulp.task('concat', function(){

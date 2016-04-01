@@ -1,6 +1,6 @@
 angular
-  .module('satellizerApp', ['satellizer', 'angular-jwt'])
-  .constant('API_URL', 'http://localhost:3000')
+  .module('dogPark', ['satellizer', 'angular-jwt'])
+  .constant('API_URL', 'http://localhost:8000')
   .config(oauthConfig);
 
 oauthConfig.$inject = ['API_URL', '$authProvider', 'FACEBOOK_DOGPARK_API_KEY'];

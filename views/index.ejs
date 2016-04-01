@@ -1,4 +1,4 @@
-<html ng-app="satellizerApp">
+<html ng-app="dogPark">
 <head>
   <title>Dog Park</title>
   <!-- External Modules -->
@@ -9,6 +9,7 @@
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
 
   <!-- Internal Modules -->
   <script src="/js/app.js"></script>
@@ -24,10 +25,16 @@
     </div>
 
     <div ng-show="main.isLoggedIn()">
+    <nav class="tabs">
+
+      <a ui-sref-active="active" ui-sref="index">Home</a>
+      <a ui-sref-active="active" ui-sref="map">Map</a>
+    </nav>
       <img ng-src="{{ main.currentUser.picture }}">
       <h2>{{ main.currentUser.name }}</h2>
       <hr>
       <button class="logout" ng-click="main.logout()"><i class="fa fa-sign-out"></i> Logout</button>
+      <map center="main.mapCenter" markers="main.mapMarkers"></map>
     </div>
   </div>
 </body>
