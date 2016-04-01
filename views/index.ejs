@@ -2,10 +2,9 @@
 <head>
   <title>Dog Park</title>
   <!-- External Modules -->
-  <script src="/js/vendor/angular/angular.min.js"></script>
-  <script src="js/vendor/satellizer/satellizer.min.js"></script>
-  <script src="/js/vendor/angular-jwt/dist/angular-jwt.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="/vendor/angular/angular.min.js"></script>
+  <script src="/vendor/satellizer/satellizer.min.js"></script>
+  <script src="/vendor/angular-jwt/dist/angular-jwt.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxM36DxD-TmmCuWMML0UXBVSirOUkF42Q" charset="utf-8"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type="text/css">
@@ -13,16 +12,12 @@
 
   <!-- Internal Modules -->
   <script src="/js/app.js"></script>
-  <script src="/js/controllers/mainController.js"></script>
-  <script src="/js/services/oauthKeys.js"></script>
-  <script src="/js/services/token.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="MainController as main">
   <div class="centered">
     <div ng-hide="main.isLoggedIn()">
-      <h1>Dog Park </h1>
+      <h1>Dog Park</h1>
       <h3>Meet other dogs and their owners around you</h3>
       <hr>
       <button class="facebook" ng-click="main.authenticate('facebook')"><i class="fa fa-facebook-square"></i> Sign in with Facebook</button>

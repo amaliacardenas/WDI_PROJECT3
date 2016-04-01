@@ -9,6 +9,11 @@ var config = require('./config/app');
 
 mongoose.connect(config.databaseUrl);
 
+app.set('views', 'views');
+app.set('view engine', 'ejs');
+
+app.use(express.static(__dirname + '/public'));
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

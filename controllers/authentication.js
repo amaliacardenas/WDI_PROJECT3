@@ -5,11 +5,11 @@ var config = require('../config/app');
 var oauth = require('../config/oauth');
 
 function facebook(req, res) {
-  console.log('error here', params);
+  
   var params = {
     code: req.body.code,
     client_id: req.body.clientId,
-    client_secret: process.env.FACEBOOK_API_SECRET,
+    client_secret: process.env.FACEBOOK_DOGPARK_API_SECRET,
     redirect_uri: config.appUrl + "/"
   };
 
@@ -59,6 +59,7 @@ function facebook(req, res) {
       return res.send({ token: token, user: payload });
     })
     .catch(function(err) {
+      console.log(err);
       // we handle any errors here
       return res.status(500).json({ error: err });
     });
