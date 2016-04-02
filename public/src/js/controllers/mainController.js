@@ -4,7 +4,7 @@ angular
 
 MainController.$inject = ['$auth', 'tokenService'];
 function MainController($auth, tokenService) {
-
+  console.log("Loaded!");
   var self = this;
 
   this.mapCenter = {lat: 51.4802, lng: -0.0193 };

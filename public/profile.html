@@ -1,3 +1,9 @@
+<div class="profile">
+<img ng-src="{{ main.currentUser.picture }}">
+<h2>{{ main.currentUser.name }}</h2>
+<hr>
+<button class="logout" ng-click="main.logout()"><i class="fa fa-sign-out"></i> Logout</button>
+
 <h2>Edit The Profile of Your Pet</h2>
 <form id="pet-edit" class="edit" method="put">
   <div class="form-group">
@@ -22,5 +28,4 @@
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
-
+</div>
