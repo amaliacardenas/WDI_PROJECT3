@@ -2,8 +2,8 @@ angular
   .module('dogPark')
   .controller('MainController', MainController);
 
-MainController.$inject = ['$auth', 'tokenService'];
-function MainController($auth, tokenService) {
+MainController.$inject = ['$auth', 'tokenService', '$scope'];
+function MainController($auth, tokenService, $scope) {
   console.log("Loaded!");
   var self = this;
 
@@ -32,6 +32,34 @@ function MainController($auth, tokenService) {
   this.logout = function() {
     tokenService.removeToken();
     this.currentUser = null;
+  }
+
+  this.geoMessage = null;
+  this.location = null;
+
+  this.geoFindMe = function() {
+
+    if (!navigator.geolocation){
+      self.geoMessage = "Geolocation is not supported by your browser";
+      return;
+    }
+
+    function success(position) {
+      console.log("success!");
+      $scope.$applyAsync(function() {
+        self.geoMessage = null;
+        self.location = position.coords;
+        self.mapMarkers.push({ name: "Me", position: { lat: self.location.latitude, lng: self.location.longitude } });
+      });
+    };
+
+    function error() {
+      self.geoMessage = "Unable to retrieve your location";
+    };
+
+    self.geoMessage = "Locating…";
+
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
 }

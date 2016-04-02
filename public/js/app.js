@@ -47,21 +47,41 @@ function Gmap() {
       markers: '='
     },
     link: function(scope, $element, attr) {
+      console.log("scope updated!");
+      
       if(!scope.center) throw new Error("You must provide a center for your map directive");
+
       var map = new google.maps.Map($element[0], {
         center: scope.center,
         zoom:10
       });
 
-      if(scope.markers) {
+      var markers = [];
+
+      function removeAllMarkers() {
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+
+        markers = [];
+      }
+
+      scope.$watch('markers', function(newVal, oldVal) {
+        console.log("Rebuilding markers!");
+
+        scope.markers = newVal;
+        removeAllMarkers();
+
         scope.markers.forEach(function(marker) {
-          new google.maps.Marker({
+          markers.push(new google.maps.Marker({
             position: marker.position,
             map: map,
             animation: google.maps.Animation.BOUNCE
-          });
+          }));
         });
-      }
+
+      }, true);
+
     }
   }
 }
@@ -69,8 +89,8 @@ angular
   .module('dogPark')
   .controller('MainController', MainController);
 
-MainController.$inject = ['$auth', 'tokenService'];
-function MainController($auth, tokenService) {
+MainController.$inject = ['$auth', 'tokenService', '$scope'];
+function MainController($auth, tokenService, $scope) {
   console.log("Loaded!");
   var self = this;
 
@@ -99,6 +119,34 @@ function MainController($auth, tokenService) {
   this.logout = function() {
     tokenService.removeToken();
     this.currentUser = null;
+  }
+
+  this.geoMessage = null;
+  this.location = null;
+
+  this.geoFindMe = function() {
+
+    if (!navigator.geolocation){
+      self.geoMessage = "Geolocation is not supported by your browser";
+      return;
+    }
+
+    function success(position) {
+      console.log("success!");
+      $scope.$applyAsync(function() {
+        self.geoMessage = null;
+        self.location = position.coords;
+        self.mapMarkers.push({ name: "Me", position: { lat: self.location.latitude, lng: self.location.longitude } });
+      });
+    };
+
+    function error() {
+      self.geoMessage = "Unable to retrieve your location";
+    };
+
+    self.geoMessage = "Locating…";
+
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
 }

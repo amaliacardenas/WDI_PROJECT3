@@ -1,3 +1,16 @@
-<body ng-controller="MainController as main">
-Welcome to the Dog Park. Click on a pin to see how many dogs are currently in the park. 
-</body>
+<div ng-controller="MainController as main">
+Welcome to the Dog Park. Checkin to let your friends that you and your dog are at the park. Once you leave, let your friends know by checking out. Click on a pin to see how many dogs are currently in the park. 
+
+<button ng-click="main.geoFindMe()">Check in</button>
+<button ng-click="main.geoFindMe()">Check out</button>
+
+<div id="geoMessage" ng-if="main.geoMessage">
+  {{ main.geoMessage }}
+</div>
+
+<div id="location" ng-if="main.location">
+  Your location is latitude: {{ main.location.latitude }}º longitude: {{ main.location.longitude }} º
+</div>
+
+<map center="main.mapCenter" markers="main.mapMarkers"></map>
+</div>
