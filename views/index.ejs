@@ -8,25 +8,39 @@
   <script src="/vendor/angular-jwt/dist/angular-jwt.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxM36DxD-TmmCuWMML0UXBVSirOUkF42Q" charset="utf-8"></script>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type="text/css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/css/app.css">
   <!-- Internal Modules -->
   <script src="/js/app.js"></script>
 </head>
 <body ng-controller="MainController as main">
-  <div class="centered">
+  <div class="container">
     <div ng-hide="main.isLoggedIn()">
-      <h1>Dog Park</h1>
-      <h3>Meet other dogs and their owners around you</h3>
-      <hr>
-      <button class="facebook" ng-click="main.authenticate('facebook')"><i class="fa fa-facebook-square"></i> Sign in with Facebook</button>
+
+        <div class = "jumbotron">
+        <h1>Dog Park</h1>
+        <h3>Meet other dogs and their owners around you</h3>
+        <hr>
+        <button class="facebook" ng-click="main.authenticate('facebook')"><i class="fa fa-facebook-square"></i> Sign in with Facebook</button>
+      </div>
     </div>
     <div ng-show="main.isLoggedIn()">
-      <nav class="tabs">
-        <a ui-sref-active="active" ui-sref="home">Home</a>
-        <a ui-sref-active="active" ui-sref="map">Map</a>
-        <a ui-sref-active="active" ui-sref="profile">Edit Profile</a>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a ui-sref-active="active" ui-sref="home" class="navbar-brand">Home</a>
+            <a ui-sref-active="active" ui-sref="map"class="navbar-brand">Map</a>
+            <a ui-sref-active="active" ui-sref="profile"class="navbar-brand">Edit Profile</a>
+
+
+              <img alt="Brand" src="...">
+            </a>
+          </div>
+        </div>
       </nav>
+
     </div>
     <div ui-view></div>
   </div>

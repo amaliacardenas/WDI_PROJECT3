@@ -41,6 +41,7 @@ function Gmap() {
             position: marker.position,
             map: map,
             animation: google.maps.Animation.BOUNCE
+            icon: "http://www.clemson.edu/administration/public-affairs/toolbox/downloads/logos/logos/paw.png"
           }));
         });
 
