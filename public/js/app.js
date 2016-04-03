@@ -76,7 +76,8 @@ function Gmap() {
           markers.push(new google.maps.Marker({
             position: marker.position,
             map: map,
-            animation: google.maps.Animation.BOUNCE
+            animation: google.maps.Animation.BOUNCE,  
+            icon: "images/paw2.png"
           }));
         });
 
@@ -132,7 +133,7 @@ function MainController($auth, tokenService, $scope) {
     }
 
     function success(position) {
-      console.log("success!");
+      console.log("success!");  
       $scope.$applyAsync(function() {
         self.geoMessage = null;
         self.location = position.coords;
