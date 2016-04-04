@@ -3,20 +3,20 @@ angular
   .controller('MainController', MainController);
 
 MainController.$inject = ['$auth', 'tokenService',  '$window', '$scope'];
-function MainController($auth, tokenService, window, $scope) {
+function MainController($auth, tokenService, $window, $scope) {
   console.log("Loaded!");
 
   var socket = $window.io();
   var self = this;
 
+  socket.on('checkin', function(user) {
+    $scope.$applyAsync(function() {
+      self.mapMarkers.push(user);
+    });
+  });
+
   this.mapCenter = {lat: 51.4802, lng: -0.0193 };
-  this.mapMarkers = [{
-    name: "Regents Park",
-    position: { lat: 51.5305, lng: -0.1465 }
-  },{
-    name: "Hyde Park",
-    position: { lat: 51.5073, lng: 0.1657 }
-  }];
+  this.mapMarkers = [];
 
   this.isLoggedIn = function() {
     return !!tokenService.getToken();
@@ -49,10 +49,13 @@ function MainController($auth, tokenService, window, $scope) {
 
     function success(position) {
       console.log("success!");  
-      $scope.$applyAsync(function() {
-        self.geoMessage = null;
-        self.location = position.coords;
-        self.mapMarkers.push({ name: "Me", position: { lat: self.location.latitude, lng: self.location.longitude } });
+      self.geoMessage = null;
+      self.location = position.coords;
+      socket.emit('checkin', {
+        _id: self.currentUser._id,
+        name: self.currentUser.name,
+        pets: self.currentUser.pets,
+        position: { lat: self.location.latitude, lng: self.location.longitude }
       });
     };
 
@@ -65,66 +68,16 @@ function MainController($auth, tokenService, window, $scope) {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+
+  // socket.on('message', function(message){
+  //   $scope.$applyAsync(function(){
+  //   self.messages.push(message);
+  //   });
+  // });
+
+
+  // self.sendMessage = function() {
+  //   socket.emit('message', {text: self.message, name: self.name, picture: self.picture, pets: self.pets});
+  //   self.message = null;
+  // }
 }
-
-  self.messages = [];
-
-  self.message = null;
-  self.name = "";
-  self.picture = "";
-  self.pets = "";
-
-  self.setUsername = function() {
-    if(self.username.length > 2) self.hasSetUsername = true; 
-  }
-
-
-  socket.on('message', function(message){
-    $scope.$applyAsync(function(){
-    self.messages.push(message);
-    });
-  });
-
-
-  self.sendMessage = function() {
-    socket.emit('message', {text: self.message, name: self.name, picture: self.picture, pets: self.pets});
-    self.message = null;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

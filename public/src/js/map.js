@@ -39,8 +39,7 @@ function Gmap() {
         scope.markers.forEach(function(marker) {
           var gMarker = new google.maps.Marker({
             position: marker.position,
-            map: map,
-            animation: google.maps.Animation.BOUNCE,  
+            map: map, 
             icon: "images/paw2.png"
           });
 
@@ -49,8 +48,16 @@ function Gmap() {
           // create info window here
           // populate info window with data from marker object
 
+          var content = '<div class="info-window"><h4>' + marker.name + '</h4>';
+
+          marker.pets.forEach(function(pet) {
+            content += '<h5>' + pet.name + ' (' + pet.breed + ')<h5>';
+          });
+
+          content += '</div>';
+
           var infoWindow = new google.maps.InfoWindow({
-            content: '<div class="info-window">' + marker.name + '</div>',
+            content: content
           });
 
           gMarker.addListener('click', function() {

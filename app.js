@@ -28,11 +28,12 @@ app.use('/', router);
 
 io.on('connect', function(socket){
   console.log("User connected with socket id of: " + socket.conn.id);
-  socket.on('message', function(message){
-    io.emit('message', message);
+  socket.on('checkin', function(user){
+    console.log("User has checked in ", user);
+    io.emit('checkin', user);
   });
 });
 
-app.listen(config.port, function() {
+server.listen(config.port, function() {
   console.log("Express is listening on port " + config.port);
 });

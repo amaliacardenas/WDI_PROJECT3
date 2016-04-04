@@ -62,58 +62,58 @@ User.create([{
 }], function(err, users){
   if (err) console.error(err);
   Pet.create([{
-    petname: "Sunny",
-    breed: "Cockerspaniel",
+    name: "Sunny",
+    breed: "Cocker Spaniel",
     gender: "Female",
     dob: 11/01/2011
   },
   {
-    petname: "Bailey",
+    name: "Bailey",
     breed: "Labrador Retriever",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Buddy",
+    name: "Buddy",
     breed: " Border Terrier",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Daisy",
+    name: "Daisy",
     breed: "Golden Retriever",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Molly",
+    name: "Molly",
     breed: "Pug",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Coco",
+    name: "Coco",
     breed: "Boxer",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Ginger",
+    name: "Ginger",
     breed: "Border Terrier",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Murphy",
+    name: "Murphy",
     breed: "German Shepherd",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Penny",
+    name: "Penny",
     breed: "Boxer",
     gender: "Female",
     dob: 11/01/2011
   },{
-    petname: "Honey",
+    name: "Honey",
     breed: "Cockerspaniel",
     gender: "Female",
     dob: 11/01/2011
   },{
-   petname: "luna",
+   name: "luna",
    breed: "Labrador Retriever",
    gender: "Female",
    dob: 11/01/2011

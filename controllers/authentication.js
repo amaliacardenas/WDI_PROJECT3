@@ -32,7 +32,7 @@ function facebook(req, res) {
     .then(function(profile) {
       console.log(profile);
       // step 3, we try to find a user in our database by their email
-      return User.findOne({ email: profile.email })
+      return User.findOne({ email: profile.email }).populate('pets')
         .then(function(user) {
           // if we find the user, we set their facebookId and picture to their profile data
           if(user) {
@@ -54,7 +54,7 @@ function facebook(req, res) {
     })
     .then(function(user) {
       // step 4, we create a JWT and send it back to our angular app
-      var payload = { _id: user._id, name: user.name, picture: user.picture };
+      var payload = { _id: user._id, name: user.name, picture: user.picture, pets: user.pets };
       var token = jwt.sign(payload, config.secret, { expiresIn: '24h' });
       return res.send({ token: token, user: payload });
     })
