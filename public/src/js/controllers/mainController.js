@@ -2,9 +2,11 @@ angular
   .module('dogPark')
   .controller('MainController', MainController);
 
-MainController.$inject = ['$auth', 'tokenService', '$scope'];
-function MainController($auth, tokenService, $scope) {
+MainController.$inject = ['$auth', 'tokenService',  '$window', '$scope'];
+function MainController($auth, tokenService, window, $scope) {
   console.log("Loaded!");
+
+  var socket = $window.io();
   var self = this;
 
   this.mapCenter = {lat: 51.4802, lng: -0.0193 };
@@ -64,3 +66,65 @@ function MainController($auth, tokenService, $scope) {
   }
 
 }
+
+  self.messages = [];
+
+  self.message = null;
+  self.name = "";
+  self.picture = "";
+  self.pets = "";
+
+  self.setUsername = function() {
+    if(self.username.length > 2) self.hasSetUsername = true; 
+  }
+
+
+  socket.on('message', function(message){
+    $scope.$applyAsync(function(){
+    self.messages.push(message);
+    });
+  });
+
+
+  self.sendMessage = function() {
+    socket.emit('message', {text: self.message, name: self.name, picture: self.picture, pets: self.pets});
+    self.message = null;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
