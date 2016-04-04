@@ -37,12 +37,25 @@ function Gmap() {
         removeAllMarkers();
 
         scope.markers.forEach(function(marker) {
-          markers.push(new google.maps.Marker({
+          var gMarker = new google.maps.Marker({
             position: marker.position,
             map: map,
             animation: google.maps.Animation.BOUNCE,  
-            icon: "http://www.clemson.edu/administration/public-affairs/toolbox/downloads/logos/logos/paw.png"
-          }));
+            icon: "images/paw2.png"
+          });
+
+          markers.push(gMarker);
+
+          // create info window here
+          // populate info window with data from marker object
+
+          var infoWindow = new google.maps.InfoWindow({
+            content: '<div class="info-window">' + marker.name + '</div>',
+          });
+
+          gMarker.addListener('click', function() {
+            infoWindow.open(map, gMarker);
+          });
         });
 
       }, true);
