@@ -9,12 +9,12 @@ function MainController($auth, tokenService, $scope) {
 
   this.mapCenter = {lat: 51.4802, lng: -0.0193 };
   this.mapMarkers = [{
-    name: "Buckingham Palace",
-    position: { lat: 51.501364, lng: -0.14189 }
+    name: "Regents Park",
+    position: { lat: 51.5305, lng: -0.1465 }
   },{
-    name: "Emirates Stadium",
-    position: { lat: 51.5548918, lng: -0.1106267 }
-  }]
+    name: "Hyde Park",
+    position: { lat: 51.5073, lng: 0.1657 }
+  }];
 
   this.isLoggedIn = function() {
     return !!tokenService.getToken();
@@ -26,6 +26,7 @@ function MainController($auth, tokenService, $scope) {
     $auth.authenticate(provider)
       .then(function() {
         self.currentUser = tokenService.getUser();
+        console.log(self.currentUser);
       });
   }
 

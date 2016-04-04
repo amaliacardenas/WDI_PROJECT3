@@ -6,9 +6,7 @@ var userSchema = mongoose.Schema({
   email: String,
   picture: String,
   facebookId: String,
-  pets : [{'type' : mongoose.Schema.Types.ObjectId,
-           'ref' : 'petSchema'
-         }]
+  pets : [{ type: mongoose.Schema.ObjectId, ref: 'Pet'}]
 });
 
 module.exports = mongoose.model('User', userSchema);

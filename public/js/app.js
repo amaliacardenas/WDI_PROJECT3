@@ -1,5 +1,5 @@
 angular
-  .module('dogPark', ['satellizer', 'angular-jwt', 'ui.router'])
+  .module('dogPark', ['satellizer', 'angular-jwt', 'ui.router', 'ngResource'])
   .constant('API_URL', 'http://localhost:8000')
   .config(oauthConfig)
   .config(Router);
@@ -34,6 +34,7 @@ function Router($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/');
 }; 
+
 angular.module('dogPark')
   .directive('map', Gmap);
 
@@ -110,11 +111,11 @@ function MainController($auth, tokenService, $scope) {
 
   this.mapCenter = {lat: 51.4802, lng: -0.0193 };
   this.mapMarkers = [{
-    name: "Buckingham Palace",
-    position: { lat: 51.501364, lng: -0.14189 }
+    name: "Regents Park",
+    position: { lat: 51.5305, lng: -0.1465 }
   },{
-    name: "Emirates Stadium",
-    position: { lat: 51.5548918, lng: -0.1106267 }
+    name: "Hyde Park",
+    position: { lat: 51.5073, lng: 0.1657 }
   }]
 
   this.isLoggedIn = function() {
@@ -127,6 +128,7 @@ function MainController($auth, tokenService, $scope) {
     $auth.authenticate(provider)
       .then(function() {
         self.currentUser = tokenService.getUser();
+        console.log(self.currentUser);
       });
   }
 
@@ -163,6 +165,50 @@ function MainController($auth, tokenService, $scope) {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+}
+angular.module('dogPark')
+       .controller('UsersController', UsersController);
+
+UsersController.$inject = ['$resource', 'tokenService'];
+function UsersController($resource, tokenService) {
+  var self = this;
+
+
+  var User = $resource('http://localhost:8000/users/:id', { id: '@_id' }, { update: {method: "PATCH"}});
+  var Pet  = $resource('http://localhost:8000/pets/:id', { id: '@_id' }, { update: {method: "PATCH"}});
+
+  this.user = {};
+  this.pet = {};
+
+  this.currentUser = tokenService.getUser();
+
+  this.all = User.query();
+
+  this.selectUser = function(user) {
+    console.log("click");
+    self.selectedUser = User.get({ id: user._id });
+  }
+ 
+  this.addPet = function(){
+
+    this.pet.userId = this.currentUser._id;
+
+    Pet.save(this.pet, function(pet) {
+      console.log('save');
+      self.all.push(pet);
+      self.pet = {};
+    });
+  }
+
+  this.editUser = function(user){
+    self.user = user;
+  }
+
+  this.deleteUser = function(user){
+    User.delete({id: user._id});
+    var index = self.all.indexOf(user);
+    self.all.splice(index, 1);
+  }
 }
 angular.module('dogPark')
   .constant('FACEBOOK_DOGPARK_API_KEY', '1538370623124177');

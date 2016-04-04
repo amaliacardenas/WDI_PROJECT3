@@ -38,83 +38,83 @@ User.create([{
 },{
   name: "Zeynep",
   email: "zeynep@gmail.com",
-  picture:'http://www.tanmonkey.com/fun/dog-looks-like-owner_files/5_1.jpg'
+  picture:'https://images.unsplash.com/uploads/1412433710756bfa9ec14/d568362b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=fd2ccee72a3f42bbd0fe84f920b80efd'
 
 },{
   name: "Noelia",
   email: "noelia@gmail.com",
-  picture:'http://www.tanmonkey.com/fun/dog-looks-like-owner_files/5_1.jpg'
+  picture:'https://images.unsplash.com/photo-1415798408244-83edcac0acca?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=b3090397334cd3cd9f32fe4ca5bbfeb6'
 
 },{
   name: "Rajen",
   email: "rajen@gmail.com",
-  picture:'http://www.tanmonkey.com/fun/dog-looks-like-owner_files/5_1.jpg'
+  picture:'https://images.unsplash.com/photo-1446730853965-62433e868929?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=ec9b6f14418a4936b5b0a2e175bd25f3'
 
 },{
   name: "John",
   email: "john@gmail.com",
-  picture:'http://www.tanmonkey.com/fun/dog-looks-like-owner_files/5_1.jpg'
+  picture:'https://images.unsplash.com/photo-1452441271666-5d998aa2f6cc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=080de114ef8fc21bfce4b0bf619793cc'
 
 },{
   name: "Kevin",
   email: "kevin@gmail.com",
-  picture:'http://www.tanmonkey.com/fun/dog-looks-like-owner_files/5_1.jpg'
+  picture:'https://images.unsplash.com/photo-1436990276129-47ab01d4e245?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=834a16309beef1f6f2d3daa3190f7881'
 }], function(err, users){
   if (err) console.error(err);
   Pet.create([{
-    name: "Sunny",
+    petname: "Sunny",
     breed: "Cockerspaniel",
     gender: "Female",
     dob: 11/01/2011
   },
   {
-    name: "Sunny",
+    petname: "Bailey",
+    breed: "Labrador Retriever",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Buddy",
+    breed: " Border Terrier",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Daisy",
+    breed: "Golden Retriever",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Molly",
+    breed: "Pug",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Coco",
+    breed: "Boxer",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Ginger",
+    breed: "Border Terrier",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Murphy",
+    breed: "German Shepherd",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Penny",
+    breed: "Boxer",
+    gender: "Female",
+    dob: 11/01/2011
+  },{
+    petname: "Honey",
     breed: "Cockerspaniel",
     gender: "Female",
     dob: 11/01/2011
   },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-    name: "Sunny",
-    breed: "Cockerspaniel",
-    gender: "Female",
-    dob: 11/01/2011
-  },{
-   name: "Sunny",
-   breed: "Cockerspaniel",
+   petname: "luna",
+   breed: "Labrador Retriever",
    gender: "Female",
    dob: 11/01/2011
   }], function(err, pets){

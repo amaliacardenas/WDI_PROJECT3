@@ -1,5 +1,5 @@
 angular
-  .module('dogPark', ['satellizer', 'angular-jwt', 'ui.router'])
+  .module('dogPark', ['satellizer', 'angular-jwt', 'ui.router', 'ngResource'])
   .constant('API_URL', 'http://localhost:8000')
   .config(oauthConfig)
   .config(Router);
